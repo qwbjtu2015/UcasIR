@@ -30,4 +30,13 @@
 
 		git push origin feature-xxx # 将本地git仓库推送到远端自己的分支
 
+3、文件结构
+	数据库：src/com/news/db
+	索引构建：src/com/news/index
+	索引搜索：src/com/news/search
+	前后端交互：src/com/news/servlet
+
+	前端界面：WebRoot/
+
+
 注意:所有代码编写均在自己的feature分支提交/不要修改development分支和master分支
