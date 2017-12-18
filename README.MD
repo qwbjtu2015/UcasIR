@@ -31,11 +31,11 @@
 		git push origin feature-xxx # 将本地git仓库推送到远端自己的分支
 
 3、文件结构
+
 	数据库：src/com/news/db
 	索引构建：src/com/news/index
 	索引搜索：src/com/news/search
 	前后端交互：src/com/news/servlet
-
 	前端界面：WebRoot/
 
 
