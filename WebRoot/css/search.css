@@ -1,0 +1,90 @@
+body{
+	background-color: black;
+	padding:0px;
+	margin:0px;
+}
+
+#bd_img{
+	background-image:url(../pic/river.jpg);
+	background-size: 100% auto; 
+    background-repeat: no-repeat; 
+	width: 100%;
+	height:100%;
+	margin: 0 auto;
+	position: absolute;
+}
+.searchbox{
+	position: absolute;
+	top:30%;
+	left:30%;
+}
+.searchmain{
+	background-color: white;
+	float:left;
+	border:0;
+}
+#searchbutton{
+	background-image: url(../pic/search-button.jpg);
+	background-size: 100% auto; 
+    background-repeat: no-repeat; 
+	border:0;
+	width: 40px;
+	height: 40px;
+	float:right;
+}
+#searchtext{
+	border:0;
+	width:400px;
+	height: 40px;
+    font-size: 20px;
+    outline: none;
+    float:left;
+    padding:0px;
+}
+#suggest{
+	width:400px;
+	background-color: white;
+	border-color: #999;
+	position: absolute;
+}
+#suggest ul{
+	list-style: none;
+	display:block;
+	margin: 0;
+	padding:0; 
+}
+#suggest ul li{
+	font-size: 20px;
+	line-height: 25px;
+	cursor: pointer
+}
+#suggest ul li:hover{
+	background-color: #e5e5e5;
+	text-decoration: underline;
+}
+
+.hot_news{
+	width:40%;
+	top:40%;
+	left:27%;
+	position: absolute;
+	color:#fdfdfd;
+	border-top:none;
+}
+#table_news tr td{
+	border-top: none;
+
+}
+#table_news a{
+        color: #fdfdfd;
+
+}
+#table_news a:visited {
+        color: #e0dcdd;
+}
+#table_news a:hover {
+        color: #dd514c;
+}
+#table_news a:active {
+        color: #0033FF;
+}
