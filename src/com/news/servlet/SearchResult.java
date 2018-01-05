@@ -2,17 +2,18 @@ package com.news.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
+import javax.servlet.http.HttpSession;
 
 import com.news.search.NewsSearcher;
 import com.news.search.SearchBean;
+import com.news.search.Tuple;
 
 public class SearchResult extends HttpServlet {
 	/**
@@ -27,24 +28,40 @@ public class SearchResult extends HttpServlet {
 		System.out.println("doGet方法执行");
 		// 设置响应内容类型
         response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
 		try {
-            String queryStr = new String(request.getParameter("q").getBytes("ISO-8859-1"),"utf-8");
+            String queryStr = new String(request.getParameter("searchtext").getBytes("ISO-8859-1"),"utf-8");
+            String model = new String(request.getParameter("model").getBytes("ISO-8859-1"),"utf-8");
+            System.out.println(model);
+            
             System.out.println(queryStr);
             NewsSearcher newsSearcher = new NewsSearcher();
-            List<SearchBean> result = newsSearcher.getResult(queryStr,0).getResult();
+            Tuple resultTuple = newsSearcher.search(queryStr, Integer.parseInt(model));
+            List<SearchBean> result = resultTuple.getResult();
+            double costSecond = resultTuple.getCostSeconds();
+            System.out.println("costSecond:"+costSecond);
+            String[] rW = resultTuple.getRelateWords(); 
+            List<String> relateWords = Arrays.asList(rW);
+            
 			int i = 0;
 			for(SearchBean bean : result) {
 				if(i == 10)
 					break;
-				System.out.println("bean.title: " + bean.getTitle() + " bean.snippet: "+ bean.getSnippet() + " bean.content: " + 
+				System.out.println("bean.id: " + bean.getId() + "bean.title: " + bean.getTitle() + " bean.snippet: "+ bean.getSnippet() + " bean.content: " + 
 									bean.getContent() + " bean.keyword: " + bean.getKeyword());
 				i++;
 			}
 			System.out.println("searchBean.result.size: " + result.size());
-            request.setAttribute("SearchResult", result);
-            getServletConfig().getServletContext().getRequestDispatcher("/result.jsp").forward(request, response);
+			HttpSession session = request.getSession();
+			session.setAttribute("results",result);
+			session.setAttribute("costSecond",costSecond);
+			session.setAttribute("relateWords",relateWords);
+			String url="/UcasIR/search_results.jsp";
+			response.sendRedirect(url);
 		}catch (Exception e) {
 			e.printStackTrace();
+		}finally{
+			out.close();
 		}
 	}
 	
@@ -54,4 +71,5 @@ public class SearchResult extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
+
 }

@@ -75,7 +75,7 @@ public class NewsSearcher {
      * @return
      * @throws Exception
      */
-    private Tuple search(String queryStr, int MODE) throws Exception {
+    public Tuple search(String queryStr, int MODE) throws Exception {
     	
     	// 创建IndexReader    	
     	indexFile = new File(NewsIndexer.searchDir);
@@ -149,10 +149,12 @@ public class NewsSearcher {
     		Document document = searcher.doc(docId);
     		bean = new SearchBean();
     		bean.setDocId(docId);
+    		bean.setId(document.get("newsId"));
+    		bean.setSource(document.get("source"));
     		bean.setTitle(document.get("title"));
     		bean.setKeyword(document.get("keyword"));
     		bean.setSnippet(snippetGen(document.get("content"), query));
-    		bean.setRelease_time(document.get("release_time"));
+    		bean.setReleaseTime(document.get("release_time"));
     		bean.setCategory(document.get("category"));
     		listBean.add(bean);
     	}
@@ -192,7 +194,7 @@ public class NewsSearcher {
 			for(SearchBean bean : result) {
 				if(i == 10)
 					break;
-				System.out.println("bean.docid: " + bean.getDocId() + " bean.title: " + bean.getTitle() + "bean.release_time: " + bean.getRelease_time() + " bean.keyword: " + bean.getKeyword() + "bean.join" + bean.getJoinNum() + "  bean.score:" + bean.getContent());
+				System.out.println("bean.docid: " + bean.getDocId() + " bean.title: " + bean.getTitle() + "bean.release_time: " + bean.getReleaseTime() + " bean.keyword: " + bean.getKeyword() + "bean.join" + bean.getJoinNum() + "  bean.score:" + bean.getContent());
 				i++;
 			}
 			System.out.println("搜索相关词");

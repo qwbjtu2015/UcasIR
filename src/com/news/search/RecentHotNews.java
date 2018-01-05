@@ -12,7 +12,7 @@ public class RecentHotNews {
 	private static Connection conn = null;     
     private static Statement stmt = null;     
     private static ResultSet rs = null; 
-    private static final int HOT_NEWS_NUM = 10;
+    private static final int HOT_NEWS_NUM = 6;
 	public List<SearchBean> getHotnews() throws Exception {
 		List<SearchBean> result = new ArrayList<SearchBean>();
 		
@@ -20,7 +20,7 @@ public class RecentHotNews {
         if(conn == null) {     
             throw new Exception("数据库连接失败！");     
         }     
-        String sql = "SELECT * FROM news WHERE release_time > '2017-12-20' AND release_time < '2017-12-24' ORDER BY join_num DESC LIMIT " + HOT_NEWS_NUM + ";";     
+        String sql = "SELECT title FROM news WHERE release_time > '2017-12-20' AND release_time < '2017-12-24' ORDER BY join_num DESC LIMIT " + HOT_NEWS_NUM + ";";     
         try {     
             stmt = conn.createStatement();     
             rs = stmt.executeQuery(sql);     

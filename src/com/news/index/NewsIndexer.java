@@ -40,7 +40,7 @@ public class NewsIndexer {
 	        if(conn == null) {     
 	            throw new Exception("数据库连接失败！");     
 	        }     
-	        String sql = "SELECT title, content, keyword, release_time, category, join_num FROM news";     
+	        String sql = "SELECT news_id, title, content, keyword, release_time, category, source, join_num FROM news";     
 	        try {     
 	            stmt = conn.createStatement();     
 	            rs = stmt.executeQuery(sql);     
@@ -92,6 +92,8 @@ public class NewsIndexer {
 				Field release_time = new StringField("release_time", rs.getString("release_time"), Field.Store.YES);
 				Field join_num = new IntField("join_num", rs.getInt("join_num"), Field.Store.YES);
 				Field category = new StringField("category", rs.getString("category"), Field.Store.YES);
+				Field newsId = new StringField("newsId", rs.getString("news_id"), Field.Store.YES);
+				Field source = new StringField("source", rs.getString("source"), Field.Store.YES);
 				title.setBoost(100);
 				keyword.setBoost(100);
 				content.setBoost(50);
@@ -101,6 +103,8 @@ public class NewsIndexer {
 				document.add(release_time);
 				document.add(join_num);
 				document.add(category);
+				document.add(newsId);
+				document.add(source);
 				indexWriter.addDocument(document);
 			}
 		} catch (Exception e) {

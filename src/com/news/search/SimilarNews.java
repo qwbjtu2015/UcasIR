@@ -59,12 +59,13 @@ public class SimilarNews {
     		Document document = searcher.doc(docId);
     		bean = new SearchBean();
     		bean.setDocId(docId);
+    		bean.setId(document.get("newsId"));
     		bean.setTitle(document.get("title"));
 //    		bean.setContent(document.get("content"));
     		bean.setContent(scoreDocs[i].score+"");
     		bean.setKeyword(document.get("keyword"));
 //    		bean.setSnippet(snippetGen(bean.getContent(), query));
-    		bean.setRelease_time(document.get("release_time"));
+    		bean.setReleaseTime(document.get("release_time"));
     		bean.setJoinNum(Integer.parseInt(document.get("join_num")));
     		listBean.add(bean);
     	}
@@ -77,7 +78,7 @@ public class SimilarNews {
 		try {
 			List<SearchBean> result = news.getSimilarNews(targetDocId);
 			for (SearchBean bean : result) {
-				System.out.println("bean.title: " + bean.getTitle() + "bean.release_time: " + bean.getRelease_time() + " bean.keyword: " + bean.getKeyword() + "bean.join" + bean.getJoinNum() + "  bean.score:" + bean.getContent());
+				System.out.println("bean.title: " + bean.getTitle() + "bean.release_time: " + bean.getReleaseTime() + " bean.keyword: " + bean.getKeyword() + "bean.join" + bean.getJoinNum() + "  bean.score:" + bean.getContent());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

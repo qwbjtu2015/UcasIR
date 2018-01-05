@@ -13,8 +13,25 @@
     <servlet-name>SearchResult</servlet-name>
     <url-pattern>/SearchResult</url-pattern>
   </servlet-mapping> 
+  <servlet>
+  	<servlet-name>NewsResult</servlet-name>
+  	<servlet-class>com.news.servlet.NewsResult</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>NewsResult</servlet-name>
+  	<url-pattern>/NewsResult</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+  	<servlet-name>RecentNews</servlet-name>
+  	<servlet-class>com.news.servlet.RecentNews</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>RecentNews</servlet-name>
+  	<url-pattern>/RecentNews</url-pattern>
+  </servlet-mapping>
 
   <welcome-file-list>
-    <welcome-file>test.html</welcome-file>
+    <welcome-file>search.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

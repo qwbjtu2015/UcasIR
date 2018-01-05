@@ -1,17 +1,15 @@
 package com.news.search;
 
 public class SearchBean {  
+	private String id;
 	private int docId;
-    private String title;  
-    private String content;  
-    private int joinNum;  
-    private String category;
-    
-    public String getCategory() {
-		return category;
+	private int joinNum;
+	private String source;
+    public String getSource() {
+		return source;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setSource(String source) {
+		this.source = source;
 	}
 	public int getJoinNum() {
 		return joinNum;
@@ -25,16 +23,38 @@ public class SearchBean {
 	public void setDocId(int docId) {
 		this.docId = docId;
 	}
-	private String keyword;
+	private String title;  
+    private String content;  
+    private String keyword;
     private String snippet;
-    private String release_time;
+    private String url;
+    private String releaseTime;
+    private String category;
+    public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	public String getReleaseTime() {
+		return releaseTime;
+	}
+	public void setReleaseTime(String releaseTime) {
+		this.releaseTime = releaseTime;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
     
-	public String getRelease_time() {
-		return release_time;
-	}
-	public void setRelease_time(String release_time) {
-		this.release_time = release_time;
-	}
 	public String getTitle() {
 		return title;
 	}

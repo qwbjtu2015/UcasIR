@@ -17,7 +17,7 @@ p{
 .searchbox_2{
 	position: absolute;
 	top:50px;
-	left:30%;
+	left:25%;
 }
 .searchmain{
 	background-color: white;
@@ -34,12 +34,15 @@ p{
 	float:right;
 }
 .searchtext{
-	width:400px;
+	width:500px;
 	height: 40px;
     font-size: 20px;
     outline: none;
     float:left;
     padding:0px;
+}
+.search_radio{
+	font-size: 15px;
 }
 #suggest{
 	width:400px;
@@ -77,4 +80,7 @@ p{
 }
 .center{
 	text-align:center;
+}
+.news_list{
+	color: #757575;
 }
