@@ -50,6 +50,7 @@ public class ContentSearcher {
             	news.setCategory(rs.getString("category"));
             	news.setSource(rs.getString("source"));
             	news.setJoinNum(rs.getInt("join_num"));
+            	
 
             }
                 
@@ -87,6 +88,12 @@ public class ContentSearcher {
             	commentBean.setCreateTime(rs.getString("create_time"));
             	commentBean.setUserId(rs.getString("user_id"));
             	commentBean.setUserName(rs.getString("user_nickname"));
+            	
+//            	°ý±á²âÊÔ
+            	commentBean.setPos_or_neg((int)System.currentTimeMillis()%2);
+//            	System.out.println(commentBean.getPos_or_neg());
+
+            	
             	comments.add(commentBean);
             }
                 

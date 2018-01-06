@@ -32,9 +32,6 @@ public class SimiNews extends HttpServlet {
             
             SimilarNews similarNews = new SimilarNews();
             List<SearchBean> result = similarNews.getSimilarNews(docId);
-            for (SearchBean searchBean : result) {
-				System.out.println(searchBean.getTitle());
-			}
 			HttpSession session = request.getSession();
 			session.setAttribute("results",result);
 			String url="/UcasIR/similar.jsp";

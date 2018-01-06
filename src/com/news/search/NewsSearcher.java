@@ -157,6 +157,9 @@ public class NewsSearcher {
     		bean.setSnippet(snippetGen(document.get("content"), query));
     		bean.setReleaseTime(document.get("release_time"));
     		bean.setCategory(document.get("category"));
+    		String conString = document.get("content");
+    		conString = conString.substring(0,Math.min(300, conString.length()));
+    		bean.setContent(conString);
     		listBean.add(bean);
     	}
     	

@@ -61,14 +61,20 @@
                                                     <!--<h3 class="am-comment-title">评论标题</h3>-->
                                                     <div class="am-comment-meta">
                                                         <!-- 评论元数据 -->
-                                                        <a href="#" class="am-comment-author">${comment.userName}</a>
+                                                        <a href="#" class="am-comment-author"><font color="#8B0000">${comment.userName}</font></a>
                                                         <!-- 评论者 -->
                                                         评论于
-                                                        <time datetime="">${comment.createTime}</time>
+                                                        <time datetime=""><font color="#8B2323">${comment.createTime}</font></time>
                                                         <div style="float:right;">
                                                         <!-- 根据后台数据选择显示 -->
-                                                        <span class="am-icon-md am-icon-frown-o" style="display:none;"></span>
-                                                        <span class="am-icon-md am-icon-smile-o"></span>
+                                                      	<c:choose>
+                                                      		<c:when test="${comment.pos_or_neg == 0}">
+                                                      			<span class="am-icon-md am-icon-frown-o"></span>	
+                                                      		</c:when>
+                                                      		<c:otherwise>
+                                                        		<span class="am-icon-md am-icon-smile-o"></span>
+                                                        	</c:otherwise>
+                                                        </c:choose>
                                                         </div>
                                                     </div>
                                                 </header>

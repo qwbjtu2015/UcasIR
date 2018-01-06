@@ -7,6 +7,13 @@ public class CommentBean {
 	private String createTime;
 	private String userId;
 	private String userName;
+	private int pos_or_neg;
+	public int getPos_or_neg() {
+		return pos_or_neg;
+	}
+	public void setPos_or_neg(int pos_or_neg) {
+		this.pos_or_neg = pos_or_neg;
+	}
 	public String getId() {
 		return id;
 	}

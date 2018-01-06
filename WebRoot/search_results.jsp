@@ -61,9 +61,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <h3 class="am-list-item-hd"><a href="NewsResult?newsId=${result.id}">${result.title}</a></h3>
 
                             <div class="am-list-item-text" style="max-height: 5.6em;">
-                              <p><span>${result.keyword}</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
+                              <p><span>${result.category}</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
 
-                              <a href="NewsResult?newsId=${result.id}" class="news_list" style="color: #757575;" title="${result.title}">${result.snippet}</a>
+                              <a href="NewsResult?newsId=${result.id}" class="news_list" style="color: #757575;" title="${result.content}">${result.snippet}</a>
                      
  
 					<br/>
@@ -80,27 +80,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default backcolor center">
 
                     <li class="am-pagination-first">
-                        <a href="#" class="am-hide-sm">第一页</a>
+                        <a href="SearchResult?" class="am-hide-sm">第一页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
                         <a href="#" class="">上一页</a>
                     </li>
 
-                    <!-- 可恢复
-                    <li>
-                        <a href="#" class="am-hide-sm">1</a>
-                    </li>
-                    <li >
-                        <a href="#" class="am-hide-sm">2</a>
-                    </li>
-                    <li>
-                        <a href="#" class="am-hide-sm">3</a>
-                    </li>
-                    <li>
-                        <a href="#" class="am-hide-sm">4</a>
-                    </li>
-                    -->
                     <li class="am-pagination-next ">
                         <a href="#" class="">下一页</a>
                     </li>

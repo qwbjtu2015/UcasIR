@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="am-list-item-text" style="max-height: 5.6em;">
                               <p><span>${result.keyword}</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
 
-                              <a href="NewsResult?newsId=${result.id}" class="news_list" style="color: #757575;" title="${result.title}">${result.snippet}</a>
+                              <a href="NewsResult?newsId=${result.id}" class="news_list" style="color: #757575;" title="${result.content}">${result.snippet}</a>
                      
  
 					<br/>

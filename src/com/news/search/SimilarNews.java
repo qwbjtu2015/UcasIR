@@ -68,6 +68,9 @@ public class SimilarNews {
     		bean.setSnippet(snippetGen(document.get("content"), query));
     		bean.setReleaseTime(document.get("release_time"));
     		bean.setJoinNum(Integer.parseInt(document.get("join_num")));
+    		String conString = document.get("content");
+    		conString = conString.substring(0,Math.min(300, conString.length()));
+    		bean.setContent(conString);
     		listBean.add(bean);
     	}
     	return listBean;
