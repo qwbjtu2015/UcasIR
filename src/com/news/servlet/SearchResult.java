@@ -49,6 +49,8 @@ public class SearchResult extends HttpServlet {
 			session.setAttribute("results",result);
 			session.setAttribute("costSecond",costSecond);
 			session.setAttribute("relateWords",relateWords);
+			session.setAttribute("model", model);
+			session.setAttribute("query", queryStr);
 			String url="/UcasIR/search_results.jsp";
 			response.sendRedirect(url);
 		}catch (Exception e) {

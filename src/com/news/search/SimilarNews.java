@@ -27,7 +27,7 @@ public class SimilarNews {
 	private static File indexFile = null;     
     private static IndexSearcher searcher = null; 
     private static IndexReader reader = null;
-    private static final int SIMILIAR_NUM = 5;
+    private static final int SIMILIAR_NUM = 8;
 	
 	
 	

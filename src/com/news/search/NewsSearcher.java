@@ -54,20 +54,21 @@ public class NewsSearcher {
      * @return
      * @throws Exception
      */
-    public Tuple getResult(String queryStr, int MODE) throws Exception{     
-        Tuple resultTuple = null;  
-        
-        try {
-        	long t0 = System.currentTimeMillis();
-        	resultTuple = search(queryStr,MODE);
-        	resultTuple.setCostSeconds((System.currentTimeMillis()-t0));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-        
-        return resultTuple;
-    }    
-    
+//    public Tuple getResult(String queryStr, int MODE) throws Exception{     
+//        Tuple resultTuple = null;  
+//        
+//        try {
+//        	long t0 = System.currentTimeMillis();
+//        	resultTuple = search(queryStr,MODE);
+//        	System.out.println("+++++++++++++++++++++++"+(System.currentTimeMillis()-t0));
+//        	resultTuple.setCostSeconds((System.currentTimeMillis()-t0)*1.0/1000);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//        
+//        return resultTuple;
+//    }    
+//    
     
     /**
      * ËÑË÷Ë÷Òý
@@ -101,7 +102,7 @@ public class NewsSearcher {
         }
         String[] relateWords = relateWordsSet.toArray(new String[relateWordsSet.size()]);
     	
-
+        long t0 = System.currentTimeMillis();
     	// ÅÅÐò·½Ê½   
     	Query query = null;
     	TopFieldDocs topDocs = null;
@@ -159,7 +160,7 @@ public class NewsSearcher {
     		listBean.add(bean);
     	}
     	
-    	Tuple resultTuple = new Tuple(listBean, relateWords,listBean.size());
+    	Tuple resultTuple = new Tuple(listBean, relateWords,listBean.size(),(System.currentTimeMillis()-t0)*1.0/1000);
     	return resultTuple;
     }   
     
@@ -187,7 +188,7 @@ public class NewsSearcher {
     public static void main(String[] args) {
     	NewsSearcher newsSearcher = new NewsSearcher();
     	try {
-			Tuple resulTuple = newsSearcher.getResult("ÅÅÇò",0);
+			Tuple resulTuple = newsSearcher.search("ÅÅÇò",0);
 			List<SearchBean> result = resulTuple.getResult();
 			String[] relateWords = resulTuple.getRelateWords();
 			int i = 0;

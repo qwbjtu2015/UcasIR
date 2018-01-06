@@ -21,20 +21,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="js/public.js"></script>
     <script type="text/javascript" src="js/search.js"></script>
 
-   
+
 </head>
 <body>
 	<div id="main">
+	<% int model = Integer.parseInt((String)session.getAttribute("model")); %>
 		<div class="searchbox_2">
 		    <form class="searchmain" id="searchmain_id" target="_self"  method="post" action="SearchResult">
 			 <div class="am-g am-g-fixed">
-			  <input type="text" id="searchtext" class="searchtext" name="searchtext" />
+			  <input type="text" id="searchtext" class="searchtext" name="searchtext" value="${query}"/>
 			  <input type="submit" id="searchbutton" class="searchbutton" value="" />
             </div>
             <div class="am-container search_radio">
-              <label><input name="model" type="radio" value="0" />相关度</label> &nbsp;&nbsp;
-              <label><input name="model" type="radio" value="1" />时间</label> &nbsp;&nbsp;
-              <label><input name="model" type="radio" value="2" />热度</label> 
+              <!-- <label><input name="model" type="radio" value="0" />相关度</label> &nbsp;&nbsp; -->
+              <label><input name="model" type="radio" value="0" <%= model==0?"Checked":"" %> />相关度</label> &nbsp;&nbsp;
+              <label><input name="model" type="radio" value="1" <%= model==1?"Checked":"" %> />时间</label> &nbsp;&nbsp;
+              <label><input name="model" type="radio" value="2" <%= model==2?"Checked":"" %> />热度</label> 
           </div>
 			</form> 
 		</div> 
@@ -50,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="am-u-sm-12 am-u-md-12 am-u-lg-8">
         <div data-am-widget="list_news" class="am-list-news am-list-news-default ">
             <div class="am-list-news-bd">
-            <p>查询时间：${costSecond}s</p>
+            <p>用时 <font size="2" color="red">${costSecond}</font> 秒</p>
             <br/>
                 <ul class="am-list backcolor">
                 <c:forEach items="${results}" var="result">
