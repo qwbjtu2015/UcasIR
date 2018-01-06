@@ -15,18 +15,27 @@
 	<script type="text/javascript"> 
 		function test(){ 
 		/* alert("hello"); */
-		window.location.href="RecentNews";
+		/*window.location.href="RecentNews";*/
+		$.ajax({    
+                    url:"RecentNews",//servlet文件的名称  
+                    type:"get",  
+                    //success:function(e){  
+                    //    alert("servlet调用成功！");  
+                    //}  
+                });  
 		} 
 	</script> 
 
   	
 </head>
-<body onLoad="test()">
+<!--  <body onLoad="test()">-->
+<body>
 	<div id="bd_img">
 		<div class="searchbox">
 			
 		  <form class="searchmain" id="searchmain_id" target="_blank" action="SearchResult">
 			  <input type="text" id="searchtext" name="searchtext" />
+			  <input type="hidden" id="model" name="model" value="0" />
 			  <input type="submit" id="searchbutton" value="" />
 		</form> 
 		</div> 
@@ -49,33 +58,11 @@
               <c:forEach items="${resultBeans }" var="resultBeans">
               <tr>
                 
-                <td><a href="#">${resultBeans.title }</a></td>
+                <td><a href="NewsResult?newsId=${resultBeans.id}">${resultBeans.title }</a></td>
                 
               </tr>
               </c:forEach>
              
-              <!--  <tr>
-                
-                <td><a href="#">韩国总统在北京喝豆浆吃油条 店家：咱店小本想推辞</a></td>
-                
-              </tr> 
-              <tr>
-                
-                <td><a href="#">张一山一人扛起七个角色，《柒个我》上演“戏精”的诞生！</a></td>
-                
-              </tr>
-               <tr>
-                
-                <td><a href="#">死缓犯梦到儿时被拐 狱中寻亲成功</a></td>
-                
-              </tr> 
-              <tr>
-                
-                <td><a href="#">刘德华获颁文学博士学位 发表感言只说了7个字</a></td>
-                
-              </tr> -->
-             
-
               </tbody>
             </table>
         </div>

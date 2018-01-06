@@ -40,8 +40,8 @@ public class NewsSearcher {
     private static File indexFile = null;     
     private static IndexSearcher searcher = null; 
     private static IndexReader reader = null;
-    private String prefixHTML = "<font color='red'>";
-	private String suffixHTML = "</font>";
+    public static String prefixHTML = "<font color='red'>";
+	public static String suffixHTML = "</font>";
     /** 查询结果条数 */    
     private static final int maxBufferedDocs = 100;
     // 相关词返回数量    
@@ -60,7 +60,7 @@ public class NewsSearcher {
         try {
         	long t0 = System.currentTimeMillis();
         	resultTuple = search(queryStr,MODE);
-        	resultTuple.setCostSeconds((System.currentTimeMillis()-t0)*1.0/1000);
+        	resultTuple.setCostSeconds((System.currentTimeMillis()-t0));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -166,7 +166,7 @@ public class NewsSearcher {
     
     
     
-    private String snippetGen(String content, Query query) {
+    String snippetGen(String content, Query query) {
     	SimpleHTMLFormatter simpleHTMLFormatter = new SimpleHTMLFormatter(prefixHTML, suffixHTML); 
     	Highlighter highlighter = new Highlighter(simpleHTMLFormatter, new QueryScorer(query));
     	String highLightText = "";

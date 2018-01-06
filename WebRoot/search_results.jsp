@@ -68,58 +68,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       
 					</div>
 					 <div class="am-list-item-text">
-					   <p><a style="float:right" href="#"> >>&nbsp; 查看相似新闻</a></p>
+					   <p><a style="float:right" href="SimiNews?docId=${result.docId}"> >>&nbsp; 查看相似新闻</a></p>
 					   </div>
                   </div>
                     </li>
                     </c:forEach>
-                    
-<!-- 
-                   <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-list-main">
-                            <h3 class="am-list-item-hd"><a href="news.html">韩国总统在北京喝豆浆吃油条 店家：咱店小本想推辞</a></h3>
-
-                            <div class="am-list-item-text" style="max-height: 5.6em;">
-                               <p><span>时事政治</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
-
-
-                              你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-                    
-                      <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-list-main">
-                            <h3 class="am-list-item-hd"><a href="news.html">张一山一人扛起七个角色，《柒个我》上演“戏精”的诞生！</a></h3>
-
-                            <div class="am-list-item-text" style="max-height: 5.6em;">
-                               <p><span>艺术欣赏</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
-                                你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-             
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-list-main">
-                            <h3 class="am-list-item-hd"><a href="news.html">张一山一人扛起七个角色，《柒个我》上演“戏精”的诞生！</a></h3>
-
-                            <div class="am-list-item-text" style="max-height: 5.6em;">
-                               <p><span>艺术欣赏</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
-                                你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li>
-                    <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left" >
-                        <div class="am-list-main">
-                            <h3 class="am-list-item-hd"><a href="news.html">张一山一人扛起七个角色，《柒个我》上演“戏精”的诞生！</a></h3>
-
-                            <div class="am-list-item-text" style="max-height: 5.6em;">
-                               <p><span>艺术欣赏</span> &nbsp;&nbsp;&nbsp;&nbsp; <span><i class="am-icon-clock-o">2016/11/11</i></span></p>
-                                你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
-
-                        </div>
-                    </li> -->
-                  
                 </ul>
 
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default backcolor center">

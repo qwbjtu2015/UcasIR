@@ -4101,6 +4101,11 @@ a.am-badge:focus {
   border-radius: 50%;
   border: 1px solid transparent;
 }
+.am-comment-mood {
+  float: left;
+  width: 16px;
+  height: 16px;
+}
 @media only screen and (min-width:641px) {
   .am-comment-avatar {
     width: 48px;

@@ -20,13 +20,14 @@ public class RecentHotNews {
         if(conn == null) {     
             throw new Exception("数据库连接失败！");     
         }     
-        String sql = "SELECT title FROM news WHERE release_time > '2017-12-20' AND release_time < '2017-12-24' ORDER BY join_num DESC LIMIT " + HOT_NEWS_NUM + ";";     
+        String sql = "SELECT title,news_id FROM news WHERE release_time > '2017-12-20' AND release_time < '2017-12-24' ORDER BY join_num DESC LIMIT " + HOT_NEWS_NUM + ";";     
         try {     
             stmt = conn.createStatement();     
             rs = stmt.executeQuery(sql);     
             while(rs.next()) {
             	SearchBean searchBean = new SearchBean();
             	searchBean.setTitle(rs.getString("title"));
+            	searchBean.setId(rs.getString("news_id"));
             	result.add(searchBean);
             }
                 

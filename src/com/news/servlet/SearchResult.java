@@ -31,26 +31,19 @@ public class SearchResult extends HttpServlet {
         PrintWriter out = response.getWriter();
 		try {
             String queryStr = new String(request.getParameter("searchtext").getBytes("ISO-8859-1"),"utf-8");
-            String model = new String(request.getParameter("model").getBytes("ISO-8859-1"),"utf-8");
+            String model = new String(request.getParameter("model"));
             System.out.println(model);
             
             System.out.println(queryStr);
             NewsSearcher newsSearcher = new NewsSearcher();
             Tuple resultTuple = newsSearcher.search(queryStr, Integer.parseInt(model));
+//            Tuple resultTuple = newsSearcher.search(queryStr, 0);
             List<SearchBean> result = resultTuple.getResult();
             double costSecond = resultTuple.getCostSeconds();
             System.out.println("costSecond:"+costSecond);
             String[] rW = resultTuple.getRelateWords(); 
             List<String> relateWords = Arrays.asList(rW);
             
-			int i = 0;
-			for(SearchBean bean : result) {
-				if(i == 10)
-					break;
-				System.out.println("bean.id: " + bean.getId() + "bean.title: " + bean.getTitle() + " bean.snippet: "+ bean.getSnippet() + " bean.content: " + 
-									bean.getContent() + " bean.keyword: " + bean.getKeyword());
-				i++;
-			}
 			System.out.println("searchBean.result.size: " + result.size());
 			HttpSession session = request.getSession();
 			session.setAttribute("results",result);

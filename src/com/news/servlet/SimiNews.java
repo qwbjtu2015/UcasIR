@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.news.search.RecentHotNews;
 import com.news.search.SearchBean;
+import com.news.search.SimilarNews;
 
-public class RecentNews extends HttpServlet {
+public class SimiNews extends HttpServlet {
 	/**
 	 * 
 	 */
@@ -25,16 +25,21 @@ public class RecentNews extends HttpServlet {
 		System.out.println("doGet方法执行");
 		// 设置响应内容类型
         response.setContentType("text/html;charset=UTF-8");
-		RecentHotNews recentHotNews = new RecentHotNews();
 		try {
-			List<SearchBean> resultBeans = recentHotNews.getHotnews();
+            int docId = Integer.parseInt(request.getParameter("docId"));
+            
+            System.out.println(docId);
+            
+            SimilarNews similarNews = new SimilarNews();
+            List<SearchBean> result = similarNews.getSimilarNews(docId);
+            for (SearchBean searchBean : result) {
+				System.out.println(searchBean.getTitle());
+			}
 			HttpSession session = request.getSession();
-			
-			session.setAttribute("resultBeans",resultBeans);
-			
-			String url = "/UcasIR/search.jsp";
+			session.setAttribute("results",result);
+			String url="/UcasIR/similar.jsp";
 			response.sendRedirect(url);
-		} catch (Exception e) {
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
 		
@@ -49,3 +54,4 @@ public class RecentNews extends HttpServlet {
     }
 
 }
+

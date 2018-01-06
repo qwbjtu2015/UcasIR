@@ -1,26 +1,12 @@
 package com.news.search;
 
 import com.news.db.JDBCUtil;
-import com.news.index.*;
-
-import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;     
 import java.util.List;     
-import org.apache.lucene.document.Document;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
-import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
-import org.apache.lucene.search.*;
-import org.apache.lucene.search.highlight.Highlighter;
-import org.apache.lucene.search.highlight.QueryScorer;
-import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 
-import org.apache.lucene.store.FSDirectory;  
-import org.apache.lucene.util.Version;  
-import org.wltea.analyzer.lucene.IKAnalyzer;  
 
 
 /**     
@@ -30,13 +16,6 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 */
 
 public class ContentSearcher {     
-        
-         
-//    private static File indexFile = null;     
-//    private static IndexSearcher searcher = null; 
-//    private static IndexReader reader = null;
-//    private String prefixHTML = "<font color='red'>";
-//	private String suffixHTML = "</font>";
 	
 	private static Connection conn = null;     
     private static Statement stmt = null;     
@@ -51,7 +30,6 @@ public class ContentSearcher {
      * @throws Exception
      */
     public SearchBean getContent(String queryStr) throws Exception{     
-        //List<SearchBean> result = null;  
     	conn = JDBCUtil.getConnection();     
         if(conn == null) {     
             throw new Exception("数据库连接失败！");     
@@ -101,7 +79,7 @@ public class ContentSearcher {
         try {     
             stmt = conn.createStatement();     
             rs = stmt.executeQuery(sql);
-            if(rs.next()){
+            while(rs.next()){
             	CommentBean commentBean = new CommentBean();
             	commentBean.setId(rs.getString("comment_id"));
             	commentBean.setNewsId(rs.getString("news_id"));
@@ -122,9 +100,7 @@ public class ContentSearcher {
         }        
         
         return comments;
-    }    
-   
-   
+    }     
 
 }
   

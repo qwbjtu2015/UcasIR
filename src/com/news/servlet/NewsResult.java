@@ -37,11 +37,10 @@ public class NewsResult extends HttpServlet {
             System.out.println(queryStr);
             ContentSearcher contentSearcher = new ContentSearcher();
             SearchBean news = contentSearcher.getContent(queryStr);
-			//System.out.println("hhhhhhhhhhhhhhhhhhhnews:"+news);
-			
+			System.out.println(news.getContent());
+            
 			List<CommentBean> comments = contentSearcher.getComments(queryStr);
-			//SearchBean news = contentSearcher.getComments(queryStr);
-			//System.out.println("comments:"+comments);
+			System.out.println("ÆÀÂÛÊýÁ¿:"+comments.size());
 			HttpSession session = request.getSession();
 			
 			session.setAttribute("news",news);
