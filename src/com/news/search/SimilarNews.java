@@ -43,6 +43,7 @@ public class SimilarNews {
     	MoreLikeThis mlt = new MoreLikeThis(reader);
     	mlt.setFieldNames(new String[] {"title", "keyword", "category"});
     	mlt.setAnalyzer(new IKAnalyzer());
+    	mlt.setBoost(true);
     	Query query = mlt.like(targetDocId);
     	TopFieldDocs topDocs = searcher.search(query, null, SIMILIAR_NUM, new Sort(), false, false);
     	

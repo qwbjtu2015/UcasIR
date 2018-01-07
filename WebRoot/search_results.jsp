@@ -118,7 +118,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <ul>
             <c:forEach items="${relateWords}" var="relateWord">
-                <li><a href="#">${relateWord}</a></li>
+                <li><a href="SearchResult?searchtext=${relateWord}&model=${model}&pageIndex=1">${relateWord}</a></li>
                 </c:forEach>
             </ul>
             <div class="am-cf"></div>

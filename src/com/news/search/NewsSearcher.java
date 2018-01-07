@@ -43,41 +43,20 @@ public class NewsSearcher {
     public static String prefixHTML = "<font color='red'>";
 	public static String suffixHTML = "</font>";
     /** 查询结果条数 */    
-    private static final int maxBufferedDocs = 100;
+    private static final int maxBufferedDocs = 10;
     // 相关词返回数量    
     private static final int RELATE_WORD_NUM = 8;    
     
     
-    /**
-     * 返回搜索结果列表
-     * @param queryStr
-     * @return
-     * @throws Exception
-     */
-//    public Tuple getResult(String queryStr, int MODE) throws Exception{     
-//        Tuple resultTuple = null;  
-//        
-//        try {
-//        	long t0 = System.currentTimeMillis();
-//        	resultTuple = search(queryStr,MODE);
-//        	System.out.println("+++++++++++++++++++++++"+(System.currentTimeMillis()-t0));
-//        	resultTuple.setCostSeconds((System.currentTimeMillis()-t0)*1.0/1000);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//        
-//        return resultTuple;
-//    }    
-//    
+  
     
     /**
-     * 搜索索引
+     * 搜索索引/返回搜索结果列表
      * @param queryStr
      * @return
      * @throws Exception
      */
     public Tuple search(String queryStr, int MODE) throws Exception {
-    	
     	// 创建IndexReader    	
     	indexFile = new File(NewsIndexer.searchDir);
     	reader = DirectoryReader.open(FSDirectory.open(indexFile));
@@ -125,7 +104,12 @@ public class NewsSearcher {
     	if(queryStr.contains("?") || queryStr.contains("*")){
     		Term term = new Term("title", queryStr);
     		WildcardQuery wildcardQuery = new WildcardQuery(term);
-    		topDocs = searcher.search(wildcardQuery, null, 10, sort,false,false);
+    		topDocs = searcher.search(wildcardQuery, null, 10, sort,true,false);
+    		queryStr = queryStr.replace("?", "");
+    		queryStr = queryStr.replace("*", "");
+    		String[] fields = {"title", "content", "keyword"};
+        	MultiFieldQueryParser multiFieldQueryParser = new MultiFieldQueryParser(Version.LUCENE_43, fields, new IKAnalyzer()); 
+        	query = multiFieldQueryParser.parse(queryStr);
     	}
     	else {
     		// 构建查询语句    
@@ -160,6 +144,7 @@ public class NewsSearcher {
     		String conString = document.get("content");
     		conString = conString.substring(0,Math.min(300, conString.length()));
     		bean.setContent(conString);
+    		
     		listBean.add(bean);
     	}
     	
@@ -191,14 +176,15 @@ public class NewsSearcher {
     public static void main(String[] args) {
     	NewsSearcher newsSearcher = new NewsSearcher();
     	try {
-			Tuple resulTuple = newsSearcher.search("排球",0);
+			Tuple resulTuple = newsSearcher.search("排*",0);
 			List<SearchBean> result = resulTuple.getResult();
 			String[] relateWords = resulTuple.getRelateWords();
 			int i = 0;
 			for(SearchBean bean : result) {
 				if(i == 10)
 					break;
-				System.out.println("bean.docid: " + bean.getDocId() + " bean.title: " + bean.getTitle() + "bean.release_time: " + bean.getReleaseTime() + " bean.keyword: " + bean.getKeyword() + "bean.join" + bean.getJoinNum() + "  bean.score:" + bean.getContent());
+				System.out.println("bean.docid: " + bean.getDocId() + " bean.title: " + bean.getTitle() + "  bean.release_time: " + bean.getReleaseTime() + " bean.keyword: " + bean.getKeyword() + "bean.join" + bean.getJoinNum() + "  bean.score:" + bean.getContent());
+//				System.out.println("bean.title: " + bean.getTitle() + "  bean.release_time: " + bean.getReleaseTime() + "  bean.join: " + bean.getJoinNum() + "  bean.score:" + bean.getContent());
 				i++;
 			}
 			System.out.println("搜索相关词");
