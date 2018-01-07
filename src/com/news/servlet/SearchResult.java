@@ -43,14 +43,14 @@ public class SearchResult extends HttpServlet {
             double costSecond = resultTuple.getCostSeconds();
             System.out.println("costSecond:"+costSecond);
             String[] rW = resultTuple.getRelateWords(); 
-            int size = resultTuple.getSize();
+            int totalPage = (resultTuple.getSize()-1)/10+1;
             List<String> relateWords = Arrays.asList(rW);
             if(pageIndex < 1)
             	pageIndex = 1;
-            else if (pageIndex > (size-1)%10+1) {
-				pageIndex = (size-1)%10+1;
+            else if (pageIndex > totalPage) {
+				pageIndex = totalPage;
 			}
-            result = result.subList((pageIndex-1)*10, Math.min(size, pageIndex*10-1));
+            result = result.subList((pageIndex-1)*10, Math.min(resultTuple.getSize(), pageIndex*10));
             
 			System.out.println("searchBean.result.size: " + result.size());
 			HttpSession session = request.getSession();
@@ -60,7 +60,7 @@ public class SearchResult extends HttpServlet {
 			session.setAttribute("model", model);
 			session.setAttribute("query", queryStr);
 			session.setAttribute("pageIndex", String.valueOf(pageIndex));
-			session.setAttribute("size", String.valueOf(size));
+			session.setAttribute("totalPage", String.valueOf(totalPage));
 			String url="/UcasIR/search_results.jsp";
 			response.sendRedirect(url);
 		}catch (Exception e) {

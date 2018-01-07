@@ -43,7 +43,7 @@ public class NewsSearcher {
     public static String prefixHTML = "<font color='red'>";
 	public static String suffixHTML = "</font>";
     /** 查询结果条数 */    
-    private static final int maxBufferedDocs = 10;
+    private static final int maxBufferedDocs = 100;
     // 相关词返回数量    
     private static final int RELATE_WORD_NUM = 8;    
     
@@ -176,7 +176,7 @@ public class NewsSearcher {
     public static void main(String[] args) {
     	NewsSearcher newsSearcher = new NewsSearcher();
     	try {
-			Tuple resulTuple = newsSearcher.search("排*",0);
+			Tuple resulTuple = newsSearcher.search("疯牛病",0);
 			List<SearchBean> result = resulTuple.getResult();
 			String[] relateWords = resulTuple.getRelateWords();
 			int i = 0;

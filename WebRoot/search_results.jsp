@@ -99,10 +99,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=<%=String.valueOf(pageIndex+1) %>" class="">下一页</a>
                     </li>
                     <li class="am-pagination-last ">
-                        <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=${(size-1)%10+1}" class="am-hide-sm">最末页</a>
+                        <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=${totalPage}" class="am-hide-sm">最末页</a>
                     </li>
                     <li class="am-pagination-last">
-                        <a>共${(size-1)%10+1}页</a>
+                        <a>共${totalPage}页</a>
                     </li>
                 </ul>
             </div>
