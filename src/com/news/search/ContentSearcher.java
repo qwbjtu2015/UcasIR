@@ -76,7 +76,7 @@ public class ContentSearcher {
             throw new Exception("Êý¾Ý¿âÁ¬½ÓÊ§°Ü£¡");     
         }  
         List<CommentBean> comments=new ArrayList<>();
-        String sql="SELECT news_id,comment_id,content,create_time,user_id,user_nickname FROM comments WHERE news_id= '"+ newsId+"';";
+        String sql="SELECT news_id,comment_id,content,create_time,user_id,user_nickname,pos_or_neg FROM comments WHERE news_id= '"+ newsId+"';";
         try {     
             stmt = conn.createStatement();     
             rs = stmt.executeQuery(sql);
@@ -88,9 +88,10 @@ public class ContentSearcher {
             	commentBean.setCreateTime(rs.getString("create_time"));
             	commentBean.setUserId(rs.getString("user_id"));
             	commentBean.setUserName(rs.getString("user_nickname"));
-            	
+            	commentBean.setPos_or_neg(rs.getInt("pos_or_neg"));
 //            	°ý±á²âÊÔ
-            	commentBean.setPos_or_neg((int)System.currentTimeMillis()%2);
+//            	commentBean.setPos_or_neg((int)System.currentTimeMillis()%2);
+            	
 //            	System.out.println(commentBean.getPos_or_neg());
 
             	

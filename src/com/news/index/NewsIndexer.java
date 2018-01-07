@@ -40,7 +40,7 @@ public class NewsIndexer {
 	        if(conn == null) {     
 	            throw new Exception("数据库连接失败！");     
 	        }     
-	        String sql = "SELECT news_id, title, content, keyword, release_time, category, source, join_num FROM news";     
+	        String sql = "SELECT news_id, title, content, keyword, release_time, category, source, join_num FROM news where release_time > '2017-12-10'";     
 	        try {     
 	            stmt = conn.createStatement();     
 	            rs = stmt.executeQuery(sql);     
