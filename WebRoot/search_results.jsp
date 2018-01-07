@@ -24,6 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
 <body>
+	<% 	int pageIndex;
+	   	if(session.getAttribute("pageIndex") != null)
+			pageIndex = Integer.valueOf((String)session.getAttribute("pageIndex"));
+		else
+			pageIndex = 1;
+	%>
 	<div id="main">
 	<% int model = Integer.parseInt((String)session.getAttribute("model")); %>
 		<div class="searchbox_2">
@@ -78,20 +84,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </ul>
 
                 <ul data-am-widget="pagination" class="am-pagination am-pagination-default backcolor center">
-
+					
                     <li class="am-pagination-first">
-                        <a href="SearchResult?" class="am-hide-sm">第一页</a>
+                        <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=<%=String.valueOf(1) %>" class="am-hide-sm">第一页</a>
                     </li>
 
                     <li class="am-pagination-prev ">
-                        <a href="#" class="">上一页</a>
+                        <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=<%=String.valueOf(pageIndex-1) %>" class="">上一页</a>
                     </li>
-
+					<li class="am-pagination-last">
+                        <a>当前第<%= pageIndex %>页</a>
+                    </li>
                     <li class="am-pagination-next ">
-                        <a href="#" class="">下一页</a>
+                        <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=<%=String.valueOf(pageIndex+1) %>" class="">下一页</a>
                     </li>
                     <li class="am-pagination-last ">
-                        <a href="#" class="am-hide-sm">最末页</a>
+                        <a href="SearchResult?searchtext=${query}&model=${model}&pageIndex=${(size-1)%10+1}" class="am-hide-sm">最末页</a>
+                    </li>
+                    <li class="am-pagination-last">
+                        <a>共${(size-1)%10+1}页</a>
                     </li>
                 </ul>
             </div>

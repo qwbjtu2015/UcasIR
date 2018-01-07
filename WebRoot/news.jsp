@@ -18,8 +18,9 @@
     <meta name="msapplication-TileColor" content="#e1652f">
 
     <link rel="icon" type="image/png" href="images/i/favicon.png">
-    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+	<link rel="stylesheet" href="assets/css/amazeui.min.css">
     <link rel="stylesheet" href="css/public.css">
+
 
 
     <script src="assets/js/jquery.min.js"></script>
